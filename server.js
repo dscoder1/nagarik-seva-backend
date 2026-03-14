@@ -10,8 +10,7 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:3000',
-    'https://nagarik-seva.vercel.app',  // you will get this after Vercel deploy
-    /\.vercel\.app$/                     // allows all vercel preview URLs too
+    'https://nagarik-seva-frontend.vercel.app/', 
   ],
   credentials: true
 }));
