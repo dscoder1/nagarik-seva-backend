@@ -6,14 +6,21 @@ require('dotenv').config();
 
 const app = express();
 
-// Middleware
+// ✅ FIXED CORS
 app.use(cors({
   origin: [
     'http://localhost:3000',
-    'https://nagarik-seva-frontend.vercel.app/', 
+    'https://nagarik-seva-frontend.vercel.app',
+    /\.vercel\.app$/
   ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
+
+// ✅ Handle preflight requests
+app.options('*', cors());
+
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
