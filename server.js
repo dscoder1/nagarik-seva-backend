@@ -7,7 +7,14 @@ require('dotenv').config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'https://nagarik-seva.vercel.app',  // you will get this after Vercel deploy
+    /\.vercel\.app$/                     // allows all vercel preview URLs too
+  ],
+  credentials: true
+}));
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
